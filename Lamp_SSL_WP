@@ -9,6 +9,43 @@ sudo apt upgrade -y
 sudo apt install apache2 -y
 
 
+***************************************************
+SET UP CONFIG FIRST: sites-available/sites-enable/
+***************************************************
+
+cp /etc/apache2/sites-available/000-default.conf /etc/apache/sites-available/example.conf
+ln -s /etc/apache2/sites-available/example.com /etc/apache/sites-enabled
+
+rm /etc/apache2/sites-available/000-default.conf
+rm /etc/apache2/sites-enabled/000-default.conf
+
+nano /etc/apache2/sites-available/example.com
+
+***********************************
+CHECK IF RUNNING: Then it follows:
+***********************************
+
+#INSTALL SSL
+
+apt install certbot -y
+
+add-apt-repository ppa:certbot/certbot 
+
+apt-get install python-certbot-apache
+
+
+#ENABLE LICENSE
+
+certbot --apache -d <domain>
+
+systemctl reload apache2
+
+
+********
+INSTALL
+********
+
+
 # install server side script
 sudo apt install php7.2 -y
 
@@ -18,7 +55,7 @@ sudo apt install git unzip curl -y
 
 
 # install php modules
-sudo apt install php7.2-cgi php7.2-cli php7.2-curl php7.2-dev php7.2-gd php7.2-intl php7.2-mbstring php7.2-xml php7.2-zip php7.2-mysql -y
+apt install php7.2-cgi php7.2-cli php7.2-curl php7.2-dev php7.2-gd php7.2-intl php7.2-mbstring php7.2-xml php7.2-zip php7.2-mysql -y
 
 
 # install mysql dbms
@@ -29,7 +66,7 @@ sudo apt install mysql-server mysql-client -y
 echo 'composer installation...'
 cd ~
 curl -sS https://getcomposer.org/installer -o composer-setup.php
-sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 
 
 mysql_secure_installation
@@ -74,21 +111,6 @@ grant all privileges on wordpress.* TO 'wordpress'@'%';
 
 <exit>
 
-
-#INSTALL SSL
-
-apt install certbot -y
-
-add-apt-repository ppa:certbot/certbot 
-
-apt-get install python-certbot-apache
-
-
-#ENABLE LICENSE
-
-certbot --apache -d <domain>
-
-systemctl reload apache2
 
 
   
