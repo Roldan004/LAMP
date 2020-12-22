@@ -1,0 +1,93 @@
+
+
+
+nano Vagrantfile
+
+#config.vm.network "public_network"
+
+#config.vm.network "forwarded_port", guest: 3306, host: 3306
+
+
+
+**INSTALL*
+sudo apt install mysql-server mysql-client
+
+
+**EDIT CONFIG**
+
+nano /etc/mysql/mysql.conf.d/mysqld.cnf
+
+bind-address = MASTER IP ADDRESS
+
+find server-id = 1
+  
+  user		=mysql
+  pid-file		=/var/run/mysqld/mysqld.pid
+  socket		=/var/run/mysql/mysqld.sock
+  log_bin = /var/log/mysql/mysql-bin.log
+ 	log_bin_index =/var/log/mysql/mysql-bin.log.index
+ 	relay_log = /var/log/mysql/mysql-relay-bin   
+ 	relay_log_index = /var/log/mysql/mysql-relay-bin.index
+
+
+.SAVE
+
+sudo service mysql restart
+
+
+**MYSQL SPREEDSHEETS**
+
+mysql -u root -p
+
+
+>>>>>>*INSIDE*<<<<<<<
+
+
+CREATE USER 'repl'@'%' identified by 'password';
+
+
+mysql -u repl -p
+ 
+GRANT REPLICATION SLAVE ON*.* TO 'repl'@'%';
+ 
+create database books;
+
+create table books.comics (name varchar(20));
+
+insert into books.comics values ('Doraemon');
+
+select * from books.comics;
+
+\q
+
+
+<<<<<OUTSIDE>>>>>>
+
+
+sudo mysqldump -uroot --all-databases --master-data > masterdump.sql
+
+sudo grep CHANGE *sql | head -1
+
+
+
+
+****************************************
+Log into MySQL in the Master server.
+****************************************
+
+>>>>>INSIDE<<<<<<<
+
+mysql -u root -p
+
+insert into books.comics values ('Naruto Shippuden');
+
+insert into books.comics values ('Noblesse');
+
+insert into books.comics values ('Kuma Kuma Bear');
+
+
+select * from books.comics;
+
+
+show slave hosts;
+
