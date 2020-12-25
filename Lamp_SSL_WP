@@ -13,9 +13,7 @@ sudo apt install apache2 -y
 SET UP CONFIG FIRST: sites-available/sites-enable/
 ***************************************************
 
-cp /etc/apache2/sites-available/000-default.conf /etc/apache/sites-available/example.conf
-ln -s /etc/apache2/sites-available/example.com /etc/apache/sites-enabled
-
+cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/example.conf
 rm /etc/apache2/sites-available/000-default.conf
 rm /etc/apache2/sites-enabled/000-default.conf
 
