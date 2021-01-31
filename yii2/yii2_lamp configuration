@@ -1,1 +1,62 @@
 
+1  sudo apt update && apt upgrade -y
+    2  sudo apt install apache2 -y
+    3  sudo apt install php7.2 -y
+    4  sudo apt-get install -y debconf-utils
+    5  sudo apt install git unzip curl -y
+    6  sudo apt install php7.2-bcmath php7.2-curl php7.2-dev php7.2-gd php7.2-json php7.2-mbstring php7.2-mysql php7.2-xml php7.2-zip -y
+    7  sudo apt install libapache2-mod-php7.2 -y
+    8  sudo debconf-set-selections <<< "mysql-server mysql-server/root_password password abc123"
+    9  sudo debconf-set-selections <<< "mysql-server mysql-server/root_password_again password abc123"
+   10  sudo apt install php-pear php-mongodb -y
+   11  sudo apt install mongodb
+   12  curl -sS https://getcomposer.org/installer -o composer-setup.php
+   13  sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+   14  wget https://github.com/yiisoft/yii2/releases/download/2.0.40/yii-advanced-app-2.0.40.tgz
+   15  tar -xvzf yii-advanced-app-2.0.40.tgz
+   16  sudo cp -rv advanced /var/www/html/
+   17  cd /var/www/html/
+   18  ls
+   19  sudo chmod -R 775 advanced
+   20  sudo chown -R www-data:www-data advanced/
+   21  sudo nano /etc/hosts
+   22  cd /etc/apache2/sites-available/
+   23  ls
+   24  sudo rm 000-default.conf default-ssl.conf 
+   25  cd ..
+   26  cd sites-enabled/
+   27  sudo rm 000-default.conf 
+   28  cd ..
+   29  cd sites-available/
+   30  ls
+   31  sudo nano yii2.lamp8.vienashoes.com.conf
+   32  sudo a2ensite yii2.lamp8.vienashoes.com.conf 
+   33  systemctl reload apache2
+   34  sudo nano yii2.lamp8.vienashoes.com.conf
+   35  apache2ctl -t
+   36  sudo nano yii2.lamp8.vienashoes.com.conf
+   37  apache2ctl -t
+   38  a2ensite yii2.lamp8.vienashoes.com.conf 
+   39  sudo service apache2 restart
+   40  cd
+   41  sudo apt install certbot 
+   42  sudo add-apt-repository ppa:certbot/certbot
+   43  sudo apt install python-certbot-apache -y
+   44  sudo certbot --apache -d yii2.lamp8.vienashoes.com
+   45  cd /etc/apache2/sites-available/
+   46  ls
+   47  sudo nano yii2.lamp8.vienashoes.com.conf 
+   48  sudo nano yii2.lamp8.vienashoes.com-le-ssl.conf 
+   49  apachectl -t
+   50  sudo nano yii2.lamp8.vienashoes.com-le-ssl.conf 
+   51  sudo nano yii2.lamp8.vienashoes.com.conf 
+   52  sudo apache2ctl -t
+   53  sudo service apache2 restart
+   54  ls
+   55  cd /var/www/html/
+   56  ls
+   57  cd advanced/
+   58  ls
+   59  sudo php init
+   60  sudo service apache2 restart
+   61  history
