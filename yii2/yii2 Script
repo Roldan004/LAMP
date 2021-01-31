@@ -57,20 +57,20 @@ Vagrant.configure("2") do |config|
 
     # fetch yii2 adv
     echo 'setting up yii2...'
-    wget https://github.com/yiisoft/yii2/releases/download/2.0.40/yii-advanced-app-2.0.40.tgz
+      wget https://github.com/yiisoft/yii2/releases/download/2.0.40/yii-advanced-app-2.0.40.tgz
 
     # extract
     tar -xvzf yii-advanced-app-2.0.40.tgz
 
     echo 'moving project to web directory..'
     # move files to web dir
-    sudo mv advanced /var/www/html/yii2advance
+    sudo mv advanced /var/www/html/advanced
 
     # chmod & chown
     echo 'file permissions and group/users..'
     cd /var/www/html
-    sudo chmod -R 775 yii2advance
-    sudo chown -R www-data:www-data yii2advance
+    sudo chmod -R 775 advanced
+    sudo chown -R www-data:www-data advanced
 
     # replace config
     echo 'setup apache2 config for yii2..'
@@ -81,9 +81,13 @@ Vagrant.configure("2") do |config|
     a2ensite
     a2enmod rewrite
 
+
+    #note: uncomment the rewrite before ssl in apache2 configuration
+
+
+
     # restart webserver
     service apache2 restart
-    a2enmod rewrite
     
     
     # create mysql user
