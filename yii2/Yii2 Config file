@@ -2,24 +2,24 @@
 	#ServerName www.example.com
 
 	#ServerAdmin webmaster@localhost
-	DocumentRoot /var/www/html/yii2advance/backend/web
+	DocumentRoot /var/www/html/advanced/backend/web
 
-	<Directory "/var/www/html/yii2advance/backend/web">
+#	<Directory "/var/www/html/advanced/backend/web">
 	    # use mod_rewrite for pretty URL support
-	    RewriteEngine on
+#	    RewriteEngine on
     
 	    # if $showScriptName is false in UrlManager, do not allow accessing URLs with script name
-	    RewriteRule ^index.php/ - [L,R=404]
+#	    RewriteRule ^index.php/ - [L,R=404]
     
 	    # If a directory or a file exists, use the request directly
-	    RewriteCond %{REQUEST_FILENAME} !-f
-	    RewriteCond %{REQUEST_FILENAME} !-d
+#	    RewriteCond %{REQUEST_FILENAME} !-f
+#	    RewriteCond %{REQUEST_FILENAME} !-d
     
 	    # Otherwise forward the request to index.php
-	    RewriteRule . index.php
+#	    RewriteRule . index.php
 
 	    # ...other settings...
-	</Directory>
+#	</Directory>
 
 
 	ErrorLog ${APACHE_LOG_DIR}/error.log
