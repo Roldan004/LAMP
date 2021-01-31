@@ -57,10 +57,10 @@ Vagrant.configure("2") do |config|
 
     # fetch yii2 adv
     echo 'setting up yii2...'
-    wget https://github.com/yiisoft/yii2/releases/download/2.0.32/yii-advanced-app-2.0.32.tgz
+    wget https://github.com/yiisoft/yii2/releases/download/2.0.40/yii-advanced-app-2.0.40.tgz
 
     # extract
-    tar -xvzf yii-advanced-app-2.0.32.tgz
+    tar -xvzf yii-advanced-app-2.0.40.tgz
 
     echo 'moving project to web directory..'
     # move files to web dir
@@ -91,11 +91,13 @@ Vagrant.configure("2") do |config|
     CREATE USER 'user'@'%' identified by 'yourpassword';
     GRANT ALL PRIVILEGES ON *.* TO 'user'@'%';
     FLUSH PRIVILEGES;
-    
+    MY_QUERY
     
     #start site
-    sudo php init
-    MY_QUERY
+    
+    #sudo php init
+    #sudo /etc/init.d/apache2 restart.
+    
 
   SHELL
 
