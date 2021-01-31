@@ -20,7 +20,7 @@
 
 	    # ...other settings...
 #	</Directory>
-<VirtualHost *:80>
+</VirtualHost>
 
 <VirtualHost *:80>
 	#ServerName www.example.com
