@@ -1,0 +1,74 @@
+    1  exit
+    2  sudo nano .ssh/authorized_keys 
+    3  clear
+    4  history
+    5  sudo apt update && sudo apt upgrade -y
+    6  sudo apt install apache2 -y
+    7  sudo apt install php7.2 -y
+    8  sudo apt-get install -y debconf-utils
+    9  sudo apt install git unzip curl -y
+   10  sudo apt install php7.2-bcmath php7.2-curl php7.2-dev php7.2-gd php7.2-json php7.2-mbstring php7.2-mysql php7.2-xml php7.2-zip -y
+   11  sudo apt install libapache2-mod-php7.2 -y
+   12  sudo debconf-set-selections <<< "mysql-server mysql-server/root_password password abc123"
+   13  sudo debconf-set-selections <<< "mysql-server mysql-server/root_password_again password abc123"
+   14  sudo apt install mysql-server mysql-client -y
+   15  sudo apt install php-pear php-mongodb -y
+   16  sudo apt install mongodb -y
+   17  curl -sS https://getcomposer.org/installer -o composer-setup.php
+   18  sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+   19  wget https://github.com/yiisoft/yii2/releases/download/2.0.40/yii-advanced-app-2.0.40.tgz
+   20  tar -xvzf yii-advanced-app-2.0.40.tgz
+   21  ls
+   22  sudo rm composer-setup.php yii-advanced-app-2.0.40.tgz 
+   23  sudo cp -rv advanced /var/www/html/
+   24  cd /var/www/html/advanced/
+   25  clear
+   26  ls
+   27  sudo chmod -R 775 .
+   28  sudo chown -R www-data:www-data .
+   29  ls -al
+   30  clear
+   31  cd
+   32  sudo nano /etc/hosts
+   33  cd /etc/apache2/sites-available/
+   34  ls
+   35  sudo rm 000-default.conf default-ssl.conf 
+   36  cd ..
+   37  cd sites-enabled/
+   38  sudo rm 000-default.conf 
+   39  cd ..
+   40  cd sites-available/
+   41  sudo nano admin.theaudibible.com.conf
+   42  sudo a2ensite admin.theaudibible.com.conf 
+   43  sudo apache2ctl -t
+   44  sudo systemctl reload apache2
+   45  history
+   46  sudo nano admin.theaudibible.com.conf
+   47  cd
+   48  sudo apt install certbot -y
+   49  sudo add-apt-repository ppa:certbot/certbot
+   50  sudo apt install python-certbot-apache -y
+   51  sudo certbot --apache -d admin.theaudibible.com
+   52  sudo nano /etc/apache2/sites-available/admin.theaudibible.com.conf 
+   53  sudo nano /etc/apache2/sites-available/admin.theaudibible.com-le-ssl.conf 
+   54  sudo apache2ctl -t
+   55  cd /var/www/html/advanced/
+   56  ls
+   57  sudo nano common/config/main.php 
+   58  sudo service apache2 restart 
+   59  ls
+   60  sudo php init
+   61  sudo nano common/config/main-local.php 
+   62  cd
+   63  cd /var/www/html/advanced/
+   64  ls
+   65  sudo mysql -u root -p
+   66  sudo nano common/config/main-local.php 
+   67  sudo apache2ctl -t
+   68  sudo php yii migrate
+   69  cd
+   70  sudo nano /etc/mysql/mysql.cnf
+   71  sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf 
+   72  sudo nano /etc/php/7.2/apache2/php.ini 
+   73  sudo service apache2 restart
+   74  history
