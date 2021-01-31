@@ -36,7 +36,7 @@ Vagrant.configure("2") do |config|
     sudo apt install libapache2-mod-php7.2 -y
 
     #deb conf
-    export DEBIAN_FRONTEND="noninteractive..."
+    echo export DEBIAN_FRONTEND="noninteractive..."
     sudo debconf-set-selections <<< "mysql-server mysql-server/root_password password abc123"
     sudo debconf-set-selections <<< "mysql-server mysql-server/root_password_again password abc123"
 
@@ -47,7 +47,7 @@ Vagrant.configure("2") do |config|
     # mongo
     echo 'mongo installation...'
     sudo apt install php-pear php-mongodb -y
-    sudo apt install mongodb
+    sudo apt install mongodb -y
 
     # composer
     echo 'composer installation...'
@@ -79,12 +79,22 @@ Vagrant.configure("2") do |config|
     rm 000-default.conf
     wget https://raw.githubusercontent.com/ne018/dreyops/master/ops/webframeworks/Yii/yii2-000-default.conf -O 000-default.conf
     a2ensite
-    a2enmod rewrite
-
-
-    #note: uncomment the rewrite before ssl in apache2 configuration
-
-
+    
+    #note: put comment the rewrite before ssl in apache2 configuration
+    
+    #Install certbot
+        #sudo apt install certbot -y
+        #sudo add-apt-repository ppa:certbot/certbot
+        #sudo apt install python-certbot-apache
+        
+    #note: uncomment the configuration file
+    
+    #config the yii2 file
+    #cd /var/www/html/advanced
+    #sudo php init   <yes>
+    
+    #Config the main-local.php
+    #sudo nano common/config/main-local.php
 
     # restart webserver
     service apache2 restart
@@ -99,9 +109,9 @@ Vagrant.configure("2") do |config|
     
     #start site
     
-    #sudo php init
     #sudo /etc/init.d/apache2 restart.
     
+    #a2enmod rewrite
 
   SHELL
 
