@@ -50,6 +50,7 @@ cd ~
 curl -sS https://getcomposer.org/installer -o composer-setup.php
 php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 
+# Get the wordpress
 
 apt install wget -y
 
@@ -57,21 +58,19 @@ wget https://wordpress.org/latest.zip
 
 unzip latest.zip
 
-cd wordpress
 
-cp -r * /var/www/html
 
-cd /var/www/html 
+# Modify the wordpress folder
 
-rm -rf index.html
-
-systemctl restart apache2
+cp -rv wordpress /var/www/html
 
 chmod -R 775 wordpress
 chown -R www-data:www-data wordpress  
 
+systemctl restart apache2
 
-ifconfig
+
+# Set up database
 
 mysql -u root -p
 
@@ -87,8 +86,15 @@ create user 'wordpress'@'%' identified by 'password';
 
 grant all privileges on wordpress.* TO 'wordpress'@'%';
 
+flush privileges;
 
 <exit>
+
+
+
+
+
+
 
 
 #INSTALL SSL
