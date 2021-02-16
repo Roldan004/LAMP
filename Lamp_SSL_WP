@@ -51,11 +51,6 @@ curl -sS https://getcomposer.org/installer -o composer-setup.php
 php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 
 
-mysql_secure_installation
-
-Yes > Yes > No > Yes > yes
-
-
 apt install wget -y
 
 wget https://wordpress.org/latest.zip
@@ -72,7 +67,9 @@ rm -rf index.html
 
 systemctl restart apache2
 
-chown -R www-data:www-data  /var/www
+chmod -R 775 wordpress
+chown -R www-data:www-data wordpress  
+
 
 ifconfig
 
