@@ -23,25 +23,13 @@ nano /etc/apache2/sites-available/example.com
 CHECK IF RUNNING: Then it follows:
 ***********************************
 
-#INSTALL SSL
-
-apt install certbot -y
-
-add-apt-repository ppa:certbot/certbot 
-
-apt-get install python-certbot-apache
-
-
-#ENABLE LICENSE
-
-certbot --apache -d <domain>
-
-systemctl reload apache2
-
 
 ********
 INSTALL
 ********
+
+# install mysql dbms
+sudo apt install mysql-server mysql-client -y
 
 
 # install server side script
@@ -54,10 +42,6 @@ sudo apt install git unzip curl -y
 
 # install php modules
 apt install php7.2-cgi php7.2-cli php7.2-curl php7.2-dev php7.2-gd php7.2-intl php7.2-mbstring php7.2-xml php7.2-zip php7.2-mysql -y
-
-
-# install mysql dbms
-sudo apt install mysql-server mysql-client -y
 
 
 # composer
@@ -110,5 +94,19 @@ grant all privileges on wordpress.* TO 'wordpress'@'%';
 <exit>
 
 
+#INSTALL SSL
+
+apt install certbot -y
+
+add-apt-repository ppa:certbot/certbot 
+
+apt-get install python-certbot-apache
+
+
+#ENABLE LICENSE
+
+certbot --apache -d <domain>
+
+systemctl reload apache2
 
   
